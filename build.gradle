@@ -5,6 +5,14 @@ plugins {
 group = 'com.study.project'
 version = '1.0-SNAPSHOT'
 
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += "--enable-preview"
+}
+
+tasks.withType(Test).configureEach {
+    jvmArgs += "--enable-preview"
+}
+
 repositories {
     mavenCentral()
 }
