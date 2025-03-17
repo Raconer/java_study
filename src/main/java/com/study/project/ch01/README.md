@@ -10,7 +10,7 @@
 ## ✅ 변수 이름 특징
 - 변수 이름의 길이는 프로그램 실행과는 무관하므로, **충분히 길어도 상관없습니다**.
 
----
+
 
 ## ✅ Java 기본 데이터 타입
 
@@ -20,8 +20,9 @@
 | 실수              | `float`, `double`                |
 | 논리              | `boolean`                      |
 
+
 ---
-## 정수
+## 1. 정수
 ### ✅ 정수 타입 크기와 범위
 
 | 타입    | 메모리 크기        | 저장되는 값의 허용 범위                                                             |
@@ -36,9 +37,12 @@
 `byte < short < int < long`
 
 ---
+## 리터럴 이란?
+> 코드에서 프로그래머가 직접 입력한 값을 **리터럴(Literal)** 이라고 합니다. 
+> 진수에 따라 작성 방식이 달라집니다.
+---
 
 ### ✅ 정수형 리터럴 (Literal)
-> 코드에서 프로그래머가 직접 입력한 값을 **리터럴(Literal)** 이라고 합니다. 진수에 따라 작성 방식이 달라집니다.
 
 ```java
 // 2진수 : 0b또는0B로 시작하고 0과 1로 작성
@@ -57,35 +61,8 @@ int y = 365;
 int x = 0xB3;   //10진수 값 = 11x16^1 +3x16^9 = 179
 int y = 0x2A0F; //10진수 값 = 2x16^3 + 10x16^2 + 0x16^1 + 15x16^9 = 10767
 ```
+--- 
 
----
-
-### ✅ Java 정수 리터럴 접미사
-
-| 접미사 | 의미 | 예시 |
-|--------|------|------|
-| `L` 또는 `l` | `long` 타입을 지정 | `long num = 100L;` |
-| `F` 또는 `f` | `float` 타입을 지정 | `float num = 10.0f;` |
-| `D` 또는 `d` | `double` 타입을 지정 (생략 가능) | `double num = 10.0d;` 또는 `double num = 10.0;` |
-
----
-
-## 🔍 사용 예시
-
-```java
-// 정수 리터럴 (기본값은 int)
-int intNum = 100;
-
-// long 타입 리터럴 (L 또는 l 사용)
-long longNum = 100L;
-
-// float 타입 리터럴 (F 또는 f 사용)
-float floatNum = 10.5f;
-
-// double 타입 리터럴 (D 또는 d 사용, 기본값은 double이므로 생략 가능)
-double doubleNum1 = 10.5;
-double doubleNum2 = 10.5d;
-```
 
 ---
 
@@ -95,7 +72,7 @@ double doubleNum2 = 10.5d;
 - `double`은 기본값이기 때문에 **`D` 접미사는 생략해도 됩니다**.
 ---
 
-## 문자
+## 2. 문자
 ### ✅ 문자 타입 크기와 범위
 
 Java에서 문자를 표현할 때는 `char` 타입을 사용합니다. `char` 타입은 **2바이트(16비트)** 크기를 가지며, **유니코드(Unicode)** 문자 집합을 사용하여 전 세계의 문자를 표현할 수 있습니다.
@@ -122,35 +99,35 @@ Java에서 문자를 표현할 때는 `char` 타입을 사용합니다. `char` �
 - 작은 따옴표(`' '`)로 하나의 문자를 표현합니다.
 
 ```java
-char ch1 = 'A';
-char ch2 = '가';
-char ch3 = '1';
+  char ch1 = 'A';
+  char ch2 = '가';
+  char ch3 = '1';
 ```
 
 ### 2. 유니코드로 표현
 - `\u`로 시작하고 16진수 4자리로 유니코드 값을 표현합니다.
 
 ```java
-char ch1 = '\u0041'; // 'A'
-char ch2 = '\uAC00'; // '가'
+  char ch1 = '\u0041'; // 'A'
+  char ch2 = '\uAC00'; // '가'
 ```
 
 ### 3. 정수값으로 표현
 - `char`는 내부적으로 정수 값을 사용하기 때문에 숫자로도 초기화가 가능합니다.
 
 ```java
-char ch1 = 65;   // 'A'
-char ch2 = 44032; // '가'
+  char ch1 = 65;   // 'A'
+  char ch2 = 44032; // '가'
 ```
 
 ### 4. 특수 문자 (이스케이프 문자)
 - `char` 타입은 특수 문자도 사용할 수 있습니다.
 
 ```java
-char tab = '\t';    // 탭
-char newline = '\n'; // 줄바꿈
-char quote = '\'';   // 작은 따옴표
-char backslash = '\\'; // 역슬래시
+  char tab = '\t';    // 탭
+  char newline = '\n'; // 줄바꿈
+  char quote = '\'';   // 작은 따옴표
+  char backslash = '\\'; // 역슬래시
 ```
 
 ---
@@ -159,25 +136,28 @@ char backslash = '\\'; // 역슬래시
 1. **`char`는 반드시 하나의 문자만 저장 가능**
 
 ```java
-char ch = 'AB'; // 오류 발생 (2개의 문자)
-char ch = 'A';  // 정상
+  char ch = 'AB'; // 오류 발생 (2개의 문자)
+  char ch = 'A';  // 정상
 ```
 
 2. **빈 문자는 허용되지 않음**
 
 ```java
-char ch = ''; // 오류 발생
-char ch = '\u0000'; // null 문자로 초기화 (정상)
+  char ch = ''; // 오류 발생
+  char ch = '\u0000'; // null 문자로 초기화 (정상)
 ```
 
 3. **`char`는 정수로도 사용 가능**
 - `char`는 내부적으로 숫자로 관리되므로, 정수형 연산이 가능합니다.
 
 ```java
-char ch = 65;
-System.out.println(ch); // 출력: A
-
-System.out.println((int)'A'); // 출력: 65
+public class Main {
+  public static void main(String[] args) {
+    char ch = 65;
+    System.out.println(ch); // 출력: A
+    System.out.println((int)'A'); // 출력: 65
+  }
+}
 ```
 
 ---
@@ -200,7 +180,7 @@ public class Main {
 
 ---
 
-## 실수
+## 3. 실수
 ### ✅ Java 실수형 타입
 
 | 타입   | 메모리 크기 | 표현 범위                                                      | 정밀도 |
@@ -208,8 +188,12 @@ public class Main {
 | `float`  | 4 byte (32 bit) | 약 ±3.40282347E+38F (6~7자리의 소수 정밀도)                    | 단정밀도 (Single Precision) |
 | `double` | 8 byte (64 bit) | 약 ±1.79769313486231570E+308 (15자리의 소수 정밀도)            | 배정밀도 (Double Precision) |
 
-- **기본값**: `double`
-- **정밀도**: `double`은 `float`보다 더 높은 정밀도를 가짐
+* 단정밀도 (float)
+  * 메모리를 아껴야 할 때 (예: 임베디드 시스템, 모바일 등)
+  * 높은 정밀도가 필요 없는 경우
+* 배정밀도 (double)
+  * 높은 정확도가 필요한 경우 (예: 과학 계산, 금융 연산 등)
+  * 계산 오차를 최소화해야 하는 경우
 
 ---
 
@@ -227,16 +211,16 @@ double num1 = 3.141592;
 - `float` 타입으로 지정하려면 **접미사 `f` 또는 `F`**를 붙여야 합니다.
 
 ```java
-// float 타입 (접미사 사용)
-float num2 = 3.141592f;
+  // float 타입 (접미사 사용)
+  float num2 = 3.141592f;
 ```
 
 #### 3. 지수 표기법 (Exponential Notation)
 - 매우 크거나 작은 수를 표현할 때 사용됩니다.
 
 ```java
-double num3 = 5e2;   // 5 x 10^2 = 500.0
-double num4 = 5e-2;  // 5 x 10^-2 = 0.05
+  double num3 = 5e2;   // 5 x 10^2 = 500.0
+  double num4 = 5e-2;  // 5 x 10^-2 = 0.05
 ```
 
 ---
@@ -245,46 +229,175 @@ double num4 = 5e-2;  // 5 x 10^-2 = 0.05
 1. **`float`은 `double`보다 정밀도가 낮아 오차가 발생할 수 있음**
 
 ```java
-float f1 = 0.123456789f;
-double d1 = 0.123456789;
-
-System.out.println(f1); // 출력: 0.12345679 (정밀도 손실)
-System.out.println(d1); // 출력: 0.123456789 (정밀도 유지)
+  public class Main {
+    public static void main(String[] args) {
+      float f1 = 0.123456789f;
+      double d1 = 0.123456789;
+  
+      System.out.println(f1); // 출력: 0.12345679 (정밀도 손실)
+      System.out.println(d1); // 출력: 0.123456789 (정밀도 유지)
+    }
+  }
 ```
-
-2. **`float`을 사용할 때는 접미사 `f` 필수**
-
-```java
-float num = 3.14; // 오류 발생 (기본은 double)
-float num = 3.14f; // 정상
-```
-
-3. **`double`은 접미사 `d`가 기본값이므로 생략 가능**
-
-```java
-double num = 3.14;   // 정상
-double num = 3.14d;  // 정상
-```
-
-4. **정밀도가 중요한 계산에는 `double` 사용 권장**
+2. **정밀도가 중요한 계산에는 `double` 사용 권장**
 
 ---
 
 ### ✅ 사용 예시
 
 ```java
-public class Main {
-    public static void main(String[] args) {
-        float floatValue = 0.1234567f;
-        double doubleValue = 0.123456789012345;
-        
-        System.out.println("Float value: " + floatValue);  // 출력: 0.1234567
-        System.out.println("Double value: " + doubleValue); // 출력: 0.123456789012345
-    }
-}
+  public class Main {
+      public static void main(String[] args) {
+          float floatValue = 0.1234567f;
+          double doubleValue = 0.123456789012345;
+          
+          System.out.println("Float value: " + floatValue);  // 출력: 0.1234567
+          System.out.println("Double value: " + doubleValue); // 출력: 0.123456789012345
+      }
+  }
 ```
 
+---
+
+## 자동 타입 변환
+
+> 말 그대로 자동으로 타입 변환이 일어나는 것을 말한다.
+> 값의 허용 범위가 작은 타입이 허용 범위가 큰 타입으로 대입 될때 발생한다.
+
+### 기본 타입을 허용 범위 순으로 나열
+> byte < short, char < int < long < float < double
+
+* int 타입이 byte 타입보다 허용 범위가 더 크기 때문에 다음 코드는 자동 타입 변환이 된다.
+  * ```java
+      byte byteValue = 10;
+      int intValue = byteValue; // 자동 타입 변환됨
+    ```
+* 정수 타입이 실수 타입으로 대입 될 경우 무조건 자동 타입 변환
+  * ```java
+    long longValue = 5000000000L;
+    float floatValue = longvalue; // 5.0E9f로 저장됨
+    double doubleValue = longvalue; // 5.0E9로 저장됨
+    ```
+* char 타입의 경우 int 타입으로 자동 변환 되면 유니코드 값이 int 타입에 대입된다.
+  * ```java
+    char charValue = 'A';
+    int intValue = charValue; //65가 저장됨
+    ```
+* 단. byte타입은 char타입으로 변환 될수 없다.
+  * char타입의 허용 범위는 음수를 포함하지 않는데 byte는 음수를 포함되기 때문이다.
+
+## 강제 타입 변환
+> 큰 허용 범위 타입은 작은 허용 범위 타입으로 자동 타입 변환될 수 없다.
+> 하지만 큰 그릇을 작은 그릇 단위로 쪼개어서 한 조각만 작은 그릇에 넣는 것은 가능하다.
+> 이를 강제 타입 변환(캐스팅)이라 한다.
+
+* int -> byte
+* long -> int
+* int -> char
+* 실수 -> 정수
 
 
+### EX)
+```java
+    int intValue = 10;
+    byte byteValue = (byte) intValue; // 강제 타입 변환
+```
 
+> [00001010] <- ~~[00000000]~~~~[00000000]~~~~[00000000]~~[00001010]
 
+## 연산식에서 자동 타입 변환
+> 자바는 실행 성능 향상 시키기 위해 컴파일 단계에서 연산을 수행한다.
+> 정수 리털러 10과 20을 덧셈 연산해서 결과를 byte 타입 변수 result 에 저장하는 코드가 있다고 가정해 보자
+> 자바 컴파일러는 컴파일 단계에서 10 + 20을 미리 연산해서 30을 만들고 result 변수에 30을 저장하도록 바이트코드를 생성한다.
+> 따라서 실행시 덧셈 연산이 없으므로 실행 성능이 좋아진다.
+> 하지만 정수 리털러이 아니라 변수가 피연산자로 사용되면 실행시 연산을 수행한다.
+> 정수 타입 변수가 산수 연산식에서 피 연산자로 사용되면 int 타입보다 작은 byte, short 타입의 변수는 int 타입으로 자동 타입 변환되어 연산을 수행한다.
+
+### byte 타입변수가 피연산자로 사용된 경우
+```java
+    byte x = 10;
+    byte y = 20;
+    byte result = x + y; // 피연산자 에러
+    int result = x + y;
+```
+
+### int 타입 변수가 피연산자로 사용된 경우
+```java
+    int x = 10;
+    int y = 20;
+    int result = x + y;
+```
+
+## "+" 연산자
+> 자바에서 + 연산자는 두가지 기능을 가지고 있다.
+> 피 연산자가 모두 숫자일 경우에는 덧셈 연산을 수행하고, 피 연산자 중 하나가 문자열일 경우에는 
+> 나머지 피연산자도 문자열로 자동 변환되어 문자열 결합 연산을 수행한다.
+
+```java
+    int value = 3 + 7; // -> int value = 10;
+    String str = "3" + 7; // -> String str = "3" + "7"; -> "37"
+    String str = 3 + "7"; // -> String str = "3" + "7"; -> "37"
+
+    /** 
+        연산식에서 + 연산자가 연이어 나오면 앞에서부터 순차적으로 + 연산을 수행한다.
+        먼저 수행된 연산이 덧셈 연산이라면 덧셈 결과를 가지고 그다음 + 연산을 수행한다.
+        만약 먼저 수행된 연산이 결합 연산이라면 이후 + 연산은 모두 결합연산이 된다.
+     
+        하지만 괄호는 최우선으로 연산을 수행한다.
+     */
+    
+    int value = 1 + 2 + 3; // -> 3 + 3 -> 6
+    String str = 1 + 2 + "3"; // 3 + "3" -> "33"
+    String str = 1 + "2" + "3"; // "12" + 3 -> "123"
+    String str = "1" + "2" + "3"; // "12" + "3" -> "123" 
+```
+
+## 문자열을 기본 타입으로 변환
+| 변환 타입             | 사용 예                                                |
+|-------------------|-----------------------------------------------------|
+| String -> byte    | String str = "10" -> Byte.parseByte(str);           |
+| String -> short   | String str = "200"; -> Short.parseShort(str);       |
+| String -> int     | String str = "300000"; -> Integer.parseInt(str);    |
+| String -> long    | String str = "40000000000"; -> Long.parseLong(str); |
+| String -> float   | String str = "12.345"; -> Float.parseFloat(str);    |
+| String -> double  | String str = "12.345"; -> Double.parseDouble(str);  |
+| String -> boolean | String str = "true"; -> Boolean.parseBoolean(str);  |
+| 기본타입 -> String    | String str = String.valueOf(기본타입값);                 |
+
+## 변수 사용 범위
+> {} 블록 내
+
+## 콘솔로 변수 값 출력
+```java
+    public class Main {
+      public static void main(String[] args) {
+        // 기본
+        System.out.println(); // 내용 출력후 줄바꿈
+        System.out.print(); // 내용 출력후 줄 안바꿈
+        System.out.printf("형식 문자열", 값1, 값2); //형식 문자열에 맞춰서 뒤의 값을 출력해라 
+        // ex
+        System.out.printf("이름 : %s", "김자바");
+        System.out.printf("나이 : %d", 25);
+        
+        // 형식 문자열에 포함될 값이 두 개 이상일 경우 값의 순선 을 포함시켜야 한다.
+        // 예를 들어 1$는 첫번째 값을 2$는 두번째 값을 뜻한다.
+        System.out.printf("이름 : %1$s, 나이 :  %2$d", "김자바", 25);
+      }
+    }
+```
+
+| 형식화된 문자열 |         | 설명                                | 출력형태       |
+|----------|---------|-----------------------------------|------------|
+| 정수       | %d      | 정수                                | 123        |
+|| %6d     | 6자리 정수, 왼쪽 빈자리 공백                 | ___123     |
+|| %-6d    | 6자리 정수, 오른쪽 빈자리 공백                | 123___     |
+|| %06d    | 6자리 정수, 왼쪽 빈자리 0 채움               | 000123     |
+| 실수       | %10.2f  | 정수 7자리 + 소수점 + 소수 2자리, 왼쪽 빈자리 공백  | ___123.45  |
+|| %-10.2f | 정수 7자리 + 소수점 + 소수 2자리, 오른쪽 공백     | 123.45____ |
+|| %010.2f | 정수 7자리 + 소수점 + 소수2자리, 왼쪽 빈자리 0 채움 | 0000123.45 |
+| 문자열      | %s      | 문자열                               | abc        |
+|| %6s     | 6자리 문자열, 왼쪽 빈자리 공백                | ___abc     |
+|| %-6s    | 6자리 문자열, 오른쪽 빈자리 공백               | abc___     |
+| 특수 문자    | \t      | 탭(tab)                            |            |
+|| \n      | 줄바꿈                               |            |
+|| %%      | %                                 | $          |
