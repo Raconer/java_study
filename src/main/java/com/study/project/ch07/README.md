@@ -168,3 +168,192 @@
 
 ## 다형성
 * 사용 방법은 동일하지만 실행 결과가 다양하게 나오는 성질
+* 다형성 = 자동 타입 변환 + 메소드 오버라이딩
+
+### 필드 다형성
+* 필드 타입(사용 방법)은 동일하지만 대입되는 객체가 달라져서 실행 결과가 다양하게 나올수 있는것
+
+```java
+ public class Car{
+  // 필드 선언
+  public Tire tire;
+
+  public void run(){
+   tire.rolle();
+  }
+ }
+ public static void main(String[] args) {
+  Car myCar = new Car();
+  myCar.tire = new HankookTire();
+  myCar.tire = new KumhoTire();
+ }
+
+ // 타이어 클래스
+ public class Tire{
+  public void roll(){
+   System.out.println("회전 합니다.");
+  }
+ }
+
+ public class HankookTire extends Tire{
+  @Override
+  public void rolle(){
+   System.out.println("한국 타이어가 회전 합니다.");
+  }
+ }
+ public class KumhoTire extends Tire{
+  @Override
+  public void rolle(){
+   System.out.println("금호 타이어가 회전 합니다.");
+  }
+ }
+```
+
+### 매개변수 다형성
+* 다형성은 필드 보다는 메소드를 호출할 때 많이 발생
+ * 메소드가 클래스 타입의 매개변수를 가지고 있을 경우, 호출할 때 동일한 타입의 객체를 제공하는 것이 정석이지만 자식 객체를 제공할 수도 있다.
+
+```java
+ public classs Vehicle{
+  public void drive(){
+   // 메소드 선언
+   System.out.println("차량이 달립니다.");
+  }
+ }
+
+ public class Bus extends Vehicle {
+  @Override
+  public void run(){
+   System.out.println("버스가 달립니다.");
+  }
+ }
+
+ public class Taxi extends Vehicle {
+  @Override
+  public void run(){
+   System.out.println("택시가 달립니다.");
+  }
+ }
+
+ public classs Driver{
+  // 메소드 선언 (클래스 타입의 매개변수를 가지고 있음)
+  public void drive(Vehicle vehicle){
+   // 메소드 선언
+   System.out.println("차량이 달립니다.");
+  }
+ }
+
+ public class DriverExample{
+  public static void main(String[] args) {
+   // Driver 객체 생성
+   Driver driver = new Driver();
+
+   // 매개값으로 Bus 객체를 제공하고 driver() 메소드 호출
+   Bus bus = new Bus();
+   driver.drve(bus);
+
+   // 매개값으로 Taxi 객체를 제공하고 driver() 메소드 호출
+   Taxi taxi = new Taxi();
+   driver.drve(taxi); 
+  }
+ }
+```
+
+## 객체 타입 확인
+> 매개 변수의 다형성에서 실제로 어떤 객체가 매개 값으로 제공 되었는지 확인하는 방법
+
+* 꼭 매개 변수가 아니더라도 변수가 참조하는 객체의 타입을 확인하고자 할때, instanceof 연산자를 사용
+
+```java
+ // `객체`의 타입과 `타입`이 같다면 true 그렇지 않으면 false
+ boolean result = `객체` insteanceof `타입`;
+
+
+ public void method(Parent parent){
+  if(parent instanceof Child){
+   Child child = (Child) parent; // 성공
+  }
+ }
+
+ public void method(Parent parent){
+  // Java 12 부터는 instanceof연산의 결과가 true일 경우, 우측 타입 변수를 사용 가능하여 강제 타입 변환이 필요 없다!!!
+  if(parent instanceof Child child){
+    // child 변수 사용가능!!!!
+  }
+ }
+```
+## 추상 클래스
+* 실체 클래스 : 객체를 생성할 수 있는 클래스
+* 추상 클래스 : 실체 클래스들의 공통적인 필드나 메소드를 추출해서 선언한 클래스
+ * 실체 클래스의 부모 역할을 한다.
+
+ex)
+* Animal.class(추상 클래스)
+ * Bird.class // 실체 클래스 (추상 클래스를 상속 받는다)
+ * Insect.class  // 실체 클래스 (추상 클래스를 상속 받는다)
+ * Fish.class   // 실체 클래스 (추상 클래스를 상속 받는다)
+
+### 추상 클래스 특징
+* 새로운 실체 클래스를 만들기 위한 부모 클래스로만 사용된다.
+ * 즉. 추상 클래스는 extends 뒤에만 올수있다. 
+* 실체 클래스의 공통되는 필드와 메소드를 추출해서 만들었기 때문에 new 연산자를 사용해서 객체를 직접 생성 불가
+ * Animal animal =  new Animal(); X
+* 필드, 메소드 선언 가능
+ * 자식 생성자에서 super()로 추상 클래스 생성자가 선언 되기 때문에 생성자 필요   
+
+### 추상 클래스 선언
+```java
+ // 클래스 선언에 abstract 추가
+ public abstract class 클래스명 {
+  
+ }
+```
+
+#### 예시
+```java
+ public abstract class Phone{
+  // 필드 선언
+  String owner;
+
+  // 생성자 선언
+  Phone(String owner){
+   this.owner = owner;
+  }
+
+  //메소드 선언
+  void turnOn(){
+   Systme.out.println("폰 전원을 켭니다.");
+  }
+
+  void turnOff(){
+   Systme.out.println("폰 전원을 끕니다.");
+  }
+ }
+```
+
+### 추상 메소드와 재정의
+* 재정의 상황
+ * 공통 메소드를 뽑아내어 추상 클래스로 작성할 때
+ * 메소드 선언부(리턴타입, 메소드명, 매개변수)만 동일 하고 실행 내용은 자식 클래스마다 달라야 하는 경우
+  * ex) Animal을 선언하여 sound()메소드를 선언 하였지만 동물마다 울음소리가 다를경우
+```java
+ abstract 리턴타입 메소드명(매개변수...);
+
+ public abstract class Animal {
+  abstract void sound();
+ }
+```
+
+## 봉인된 클래스(부모 클래스로 사용하지 맙시다~~~)
+* 기본적으로 final 클래스를 제외한 모든 클래스는 부모 클래스가 될 수 있다.
+* 그러나 Java15 부터는 무분별한 자식 클래스 생성을 방지 하기 위해 봉인된(sealed) 클래스가 도입
+
+```java
+ // Person의 자식 클래스는 Employee와 Manager만 가능 합니다~~
+ public sealed class Person permits Employee, Manager { ... }
+
+ // final 또는 non-sealed 키워드로 다음과 같이 선언 하고나 sealed 키워드를 사용해서 또 다른 봉인 클래스로 선언 해야 한다.
+ public final class Employee extends Person{...} // final : 더 이상 상속 불가
+ public non-sealed class Manager extends Person{...} // 봉인을 해제한다. 따라서 Manager는 다른 클래스에 상속이 가능하다.
+ // public class Director extends Manager {...}
+```
