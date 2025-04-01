@@ -4,8 +4,8 @@ class A{}
 class B extends A{
 
 }
-class C extends B{}
-class D extends C{}
+class C extends A{}
+class D extends B{}
 
 class E extends C{}
 
