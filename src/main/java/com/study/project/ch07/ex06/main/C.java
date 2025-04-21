@@ -4,8 +4,8 @@ import com.study.project.ch07.ex06.A;
 
 public class C {
     public void method() {
-        A a = new A();
+       /* A a = new A();
         a.field = "value";
-        a.method();
+        a.method();*/
     }
 }
